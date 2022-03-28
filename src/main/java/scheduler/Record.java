@@ -5,12 +5,13 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("test")
+@Document("record")
 @Data
 @AllArgsConstructor
-public class TestEntity {
+public class Record {
     @Id
+    private String id;
+    private String from;
     private long threadId;
-    private String txId;
     private String localDateTimeString;
 }
