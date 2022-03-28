@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class TestEntity {
     @Id
-    private String id;
+    private long threadId;
     private String txId;
+    private String localDateTimeString;
 }

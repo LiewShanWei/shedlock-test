@@ -18,19 +18,18 @@ public class SchedulerService {
     private SchedulerRepository schedulerRepository;
 
     @EventListener(ContextStartedEvent.class)
-    public void startScheduler(){
-        String txId = UUID.randomUUID().toString() + " - ContextStartedEvent";
+    public void startSchedulerWithEventListener(){
+        String txId = UUID.randomUUID().toString() + " - startSchedulerWithEventListener";
         Flux.interval(Duration.ofMinutes(1L))
-                .doOnNext(x -> printTask(txId))
                 .doOnNext(x -> insertTask(txId))
                 .subscribe();
     }
 
-    public void printTask(String txId){
-            System.out.println(Thread.currentThread().getId() + " - " + LocalDateTime.now().toString() + " - " + txId);
-    }
-
     public void insertTask(String txId){
-        schedulerRepository.insert(new TestEntity(UUID.randomUUID().toString(), txId));
+        long threadId = Thread.currentThread().getId();
+        String dateTimeNowString = LocalDateTime.now().toString();
+        System.out.println(threadId + " - " + dateTimeNowString + " - " + txId);
+
+        schedulerRepository.insert(new TestEntity(Thread.currentThread().getId(), txId, LocalDateTime.now().toString()));
     }
 }
