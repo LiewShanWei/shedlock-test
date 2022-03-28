@@ -1,8 +1,8 @@
 package scheduler;
 
-import com.mongodb.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClient;
 import net.javacrumbs.shedlock.core.LockProvider;
-import net.javacrumbs.shedlock.provider.mongo.MongoLockProvider;
+import net.javacrumbs.shedlock.provider.mongo.reactivestreams.ReactiveStreamsMongoLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,6 @@ public class ShedlockConfig {
 
     @Bean
     public LockProvider lockProvider(MongoClient mongo) {
-        return new MongoLockProvider(mongo.getDatabase(databaseName));
+        return new ReactiveStreamsMongoLockProvider(mongo.getDatabase(databaseName));
     }
 }
