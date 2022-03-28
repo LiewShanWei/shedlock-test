@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Record {
     @Id
     private String id;
-    private String from;
     private long threadId;
     private String localDateTimeString;
 }
