@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "15M", defaultLockAtLeastFor = "PT3M")
+@EnableSchedulerLock(defaultLockAtMostFor = "15M", defaultLockAtLeastFor = "PT1M")
 public class ShedlockConfig {
     @Bean
     public LockProvider lockProvider(MongoClient mongo) {
